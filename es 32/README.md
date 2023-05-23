@@ -14,14 +14,6 @@ L'algoritmo utilizzato per sincronizzare i processi e gestire l'accesso alle sed
 
 4. La simulazione genera un numero casuale di clienti che arrivano in tempi casuali. Il tempo di esecuzione di ogni ritratto è anch'esso casuale, compreso tra un minimo e un massimo predefiniti.
 
-## Come eseguire la simulazione
-
-1. Compilare i file sorgenti Java con il comando: `javac Main.java StreetArtistSimulation.java Customer.java`
-
-2. Eseguire il programma con il comando: `java Main`
-
-3. Verrà visualizzato il numero di clienti generati casualmente. Seguiranno gli output che rappresentano l'arrivo dei clienti, l'acquisizione delle sedie, l'esecuzione del ritratto e il rilascio delle sedie.
-
 ## Personalizzazione
 
 - Il numero di sedie disponibili può essere modificato impostando la costante `NUM_CHAIRS` nella classe `StreetArtistSimulation`.
