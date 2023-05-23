@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 public class Customer extends Thread {
     private int customerId;
     private Semaphore chairsSemaphore;
-    int MAX_WAIT_TIME = 20000;
+    private Random random = new Random();
 
     public Customer(int customerId, Semaphore chairsSemaphore) {
         this.customerId = customerId;
@@ -17,7 +17,7 @@ public class Customer extends Thread {
     public void run() {
         try {
             System.out.println("Cliente " + customerId + " è arrivato.");
-            if (chairsSemaphore.tryAcquire(MAX_WAIT_TIME, TimeUnit.MILLISECONDS)) {
+            if (chairsSemaphore.tryAcquire(StreetArtistSimulation.MAX_WAIT_TIME, TimeUnit.MILLISECONDS)) {
                 // Il cliente ha ottenuto una sedia e può procedere per il ritratto
                 System.out.println("Cliente " + customerId + " ha ottenuto una sedia.");
                 getPortrait();
@@ -33,7 +33,7 @@ public class Customer extends Thread {
     }
 
     private void getPortrait() throws InterruptedException {
-        Random random = new Random();
+        
         int portraitTime = random.nextInt(5000) + 1000; // Tempo di esecuzione del ritratto (tra 1 e 5 secondi)
         Thread.sleep(portraitTime);
     }
