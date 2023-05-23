@@ -5,6 +5,7 @@ import java.util.concurrent.Semaphore;
 public class Customer extends Thread {
     private int customerId;
     private Semaphore chairsSemaphore;
+    int MAX_WAIT_TIME = 1000;
 
     public Customer(int customerId, Semaphore chairsSemaphore) {
         this.customerId = customerId;
