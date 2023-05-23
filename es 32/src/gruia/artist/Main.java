@@ -1,3 +1,4 @@
+package gruia.artist;
 import java.util.Random;
 
 public class Main{
