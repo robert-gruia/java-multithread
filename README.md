@@ -6,13 +6,13 @@ L'algoritmo utilizzato per sincronizzare i processi e gestire l'accesso alle sed
 
 ## Algoritmo
 
-1. All'inizio della simulazione, viene creato un semaforo `chairsSemaphore` con un contatore iniziale uguale al numero di sedie disponibili.
+1. All'inizio della simulazione, viene creato un semaforo `chairsSemaphore` con un contatore iniziale uguale al numero di sedie disponibili e un semaforo `portraitSemaphore` con un contatore iniziale uguale a 1 siccome c'è un singolo artista.
 
-2. I clienti vengono rappresentati come thread separati. Quando un cliente arriva, cerca di acquisire una sedia utilizzando il metodo `tryAcquire()` del semaforo. Se riesce ad acquisire una sedia, procede con il ritratto. Altrimenti, se il tempo di attesa supera il timeout predefinito, il cliente rinuncia al ritratto.
+2. I clienti vengono rappresentati come thread separati. Quando un cliente arriva, cerca di acquisire una sedia utilizzando il metodo `tryAcquire()` del semaforo `chairsSemaphore`. Se riesce ad acquisire una sedia, procede ad attendere il proprio turno per fare il ritratto, turno gestito grazie al semaforo `portraitSemaphore`. Se il tempo di attesa per una sedia supera il timeout predefinito, il cliente rinuncia.
 
-3. Durante l'esecuzione del ritratto, il cliente occupa una sedia e il semaforo viene decrementato. Al termine del ritratto, il cliente rilascia la sedia chiamando il metodo `release()` del semaforo, consentendo ad altri clienti di occupare una sedia.
+3. Il cliente occupa una sedia e il semaforo viene decrementato. Al termine del ritratto, il cliente rilascia la sedia chiamando il metodo `release()` di entrambi i semafori, consentendo ad altri clienti di occupare una sedia e ad un'altro di fare il ritratto.
 
-4. La simulazione genera un numero casuale di clienti che arrivano in tempi casuali. Il tempo di esecuzione di ogni ritratto è anch'esso casuale, compreso tra un minimo e un massimo predefiniti.
+4. Viene generato un numero casuale di clienti che arrivano in tempi casuali. Il tempo di esecuzione di ogni ritratto è anch'esso casuale, compreso tra un minimo e un massimo predefiniti.
 
 ## Personalizzazione
 

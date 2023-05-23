@@ -7,6 +7,7 @@ public class StreetArtistSimulation {
     static final int MAX_WAIT_TIME = 20000; // Tempo massimo di attesa per una sedia (in millisecondi)
 
     private Semaphore chairsSemaphore = new Semaphore(NUM_CHAIRS);
+    private Semaphore portraitSemaphore = new Semaphore(1);
 
     public void startSimulation() {
         Random random = new Random();
@@ -15,7 +16,7 @@ public class StreetArtistSimulation {
         System.out.println("Numero di clienti: " + numCustomers);
 
         for (int i = 1; i <= numCustomers; i++) {
-            Customer customer = new Customer(i, chairsSemaphore);
+            Customer customer = new Customer(i, chairsSemaphore, portraitSemaphore);
             customer.start();
         }
     }
