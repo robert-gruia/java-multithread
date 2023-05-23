@@ -32,6 +32,4 @@ L'algoritmo utilizzato per sincronizzare i processi e gestire l'accesso alle sed
 
 - Il tempo di esecuzione casuale per ogni ritratto può essere personalizzato modificando la generazione casuale nella classe `Customer` nel metodo `getPortrait()`.
 
-## Requisiti
 
-- Java Development Kit (JDK) installato sul sistema.
