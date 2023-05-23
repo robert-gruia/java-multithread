@@ -1,11 +1,12 @@
 package gruia.artist;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.TimeUnit;
 
 public class Customer extends Thread {
     private int customerId;
     private Semaphore chairsSemaphore;
-    int MAX_WAIT_TIME = 1000;
+    int MAX_WAIT_TIME = 20000;
 
     public Customer(int customerId, Semaphore chairsSemaphore) {
         this.customerId = customerId;
@@ -16,7 +17,7 @@ public class Customer extends Thread {
     public void run() {
         try {
             System.out.println("Cliente " + customerId + " è arrivato.");
-            if (chairsSemaphore.tryAcquire(MAX_WAIT_TIME)) {
+            if (chairsSemaphore.tryAcquire(MAX_WAIT_TIME, TimeUnit.MILLISECONDS)) {
                 // Il cliente ha ottenuto una sedia e può procedere per il ritratto
                 System.out.println("Cliente " + customerId + " ha ottenuto una sedia.");
                 getPortrait();
