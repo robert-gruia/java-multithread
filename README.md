@@ -7,12 +7,13 @@ L'algoritmo utilizzato per sincronizzare i processi e gestire l'accesso alle sed
 ## Algoritmo
 
 1. All'avvio del programma vengono istanziati 2 semafori a conteggio nella classe `StreetArtistSimulation`:
-    - `chairsSemaphore` &rarr; gestisce l'occupazione delle sedie;
+    - `chairsSemaphore` &rarr; gestisce l'occupazione delle sedie:
+        - semaforo a conteggio con limite gestito dalla costante `NUM_CHAIRS` 
     - `portraitSemaphore` &rarr; gestisce i turni per il ritratto.
 
-2. I clienti vengono istanziati come thread separati e al loro avvio si metteranno in attesa apettando di acquisire una sedia utilizzando il metodo `tryAcquire()` del semaforo `chairsSemaphore`. In caso passi troppo tempo senza acquisire una sedia il cliente andrà via.
+2. I clienti vengono istanziati come thread separati e al loro avvio si metteranno in attesa apettando di acquisire una sedia utilizzando il metodo `tryAcquire()` del semaforo `chairsSemaphore`. In caso passi uno specifico periodo di tempo (`MAX_WAIT_TIME`) senza acquisire una sedia il cliente andrà via.
 
-3. In caso il cliente riesca ad acquisire un posto nella fila di sedie si metterà in attesa aspettando il proprio ritratto. Quest'attesa viene gestita dal semaforo `portraitSemaphore` attraverso il metodo `tryAcquire()` del suddetto semaforo.
+3. In caso il cliente riesca ad acquisire un posto nella fila di sedie si metterà in attesa aspettando il proprio ritratto. Quest'attesa viene gestita dal semaforo `portraitSemaphore` attraverso il suo metodo `tryAcquire()`.
 
 4. Al termine del ritratto il cliente interessato si alzerà dalla sedia e se ne andrà liberando `portraitSemaphore` e 1 posto del `chairsSemaphore`.
 
